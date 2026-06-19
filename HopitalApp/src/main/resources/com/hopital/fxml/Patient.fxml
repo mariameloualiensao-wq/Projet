@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hopital.controller.PatientController">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- ===== FORMULAIRE ===== -->
+    <!-- ===== FORMULAIRE EN ACCORDION ===== -->
+    <Accordion>
+        <panes>
+            <TitledPane text="Informations personnelles" expanded="true">
+                <GridPane hgap="10" vgap="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champNom" promptText="Nom du patient"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1">
+                        <tooltip>
+                            <Tooltip text="Entrez le nom de famille du patient"/>
+                        </tooltip>
+                    </TextField>
+
+                    <Label text="Prénom :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="champPrenom" promptText="Prénom du patient"
+                               GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Naissance :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="champDateNaissance"
+                                GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Sexe :" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <HBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                        <RadioButton fx:id="radioHomme" text="Homme"/>
+                        <RadioButton fx:id="radioFemme" text="Femme"/>
+                    </HBox>
+
+                    <Label text="Téléphone :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champTelephone" promptText="06xxxxxxxx"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1">
+                        <tooltip>
+                            <Tooltip text="Format attendu : 06 ou 07 suivi de 8 chiffres"/>
+                        </tooltip>
+                    </TextField>
+
+                    <Label text="Email :" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <TextField fx:id="champEmail" promptText="exemple@mail.com"
+                               GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                    <Label text="Adresse :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="champAdresse" prefRowCount="2" promptText="Adresse complète"
+                              GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                </GridPane>
+            </TitledPane>
+
+            <TitledPane text="Informations médicales" expanded="false">
+                <GridPane hgap="10" vgap="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+
+                    <Label text="Groupe sanguin :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboGroupeSanguin"
+                              GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Actif :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <CheckBox fx:id="checkActif" text="Patient actif"
+                              GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                </GridPane>
+            </TitledPane>
+        </panes>
+    </Accordion>
+
+    <!-- ===== BOUTONS D'ACTION ===== -->
+    <HBox spacing="10">
+        <Button text="Ajouter" fx:id="btnAjouter" onAction="#ajouterPatient"/>
+        <Button text="Modifier" fx:id="btnModifier" onAction="#modifierPatient"/>
+        <Button text="Supprimer" fx:id="btnSupprimer" onAction="#supprimerPatient"/>
+        <Button text="Effacer le formulaire" onAction="#effacerFormulaire"/>
+        <Button text="📁 Exporter CSV" onAction="#exporterCSV"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- ===== BARRE DE RECHERCHE ===== -->
+    <HBox spacing="10">
+        <Label text="Rechercher :"/>
+        <TextField fx:id="champRecherche" promptText="Nom ou prénom..." onKeyReleased="#rechercherPatient"/>
+    </HBox>
+
+    <!-- ===== TABLEAU DES PATIENTS ===== -->
+    <TableView fx:id="tablePatients" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNom" text="Nom"/>
+            <TableColumn fx:id="colPrenom" text="Prénom"/>
+            <TableColumn fx:id="colTelephone" text="Téléphone"/>
+            <TableColumn fx:id="colGroupe" text="Groupe sanguin"/>
+            <TableColumn fx:id="colActif" text="Actif"/>
+        </columns>
+    </TableView>
+
+</VBox>

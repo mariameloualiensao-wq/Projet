@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hopital.controller.MainController">
+
+    <!-- ===== HAUT : la barre de menus ===== -->
+    <top>
+        <MenuBar>
+            <Menu text="Fichier">
+                <MenuItem text="Exporter CSV"/>
+                <MenuItem text="Quitter" onAction="#quitter"/>
+            </Menu>
+            <Menu text="Aide">
+                <MenuItem text="A propos"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- ===== CENTRE : les onglets ===== -->
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+
+            <Tab text="Patients">
+                <fx:include source="Patient.fxml"/>
+            </Tab>
+
+            <Tab text="Rendez-vous">
+                <fx:include source="RendezVous.fxml"/>
+            </Tab>
+
+            <Tab text="Statistiques">
+                <fx:include source="Statistiques.fxml"/>
+            </Tab>
+
+            <Tab text="Paramètres">
+                <fx:include source="Parametres.fxml"/>
+            </Tab>
+
+        </TabPane>
+
+    </center>
+
+</BorderPane>

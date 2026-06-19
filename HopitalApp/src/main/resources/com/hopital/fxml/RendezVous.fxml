@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hopital.controller.RendezVousController">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <!-- ===== FORMULAIRE ===== -->
+    <GridPane hgap="10" vgap="10">
+
+        <Label text="Patient :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboPatient" prefWidth="220"
+                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Médecin :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="champMedecin" promptText="Dr. Nom"
+                   GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+        <Label text="Spécialité :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="comboSpecialite" prefWidth="220"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Date :" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <DatePicker fx:id="champDateRdv"
+                    GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+        <Label text="Heure :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <HBox spacing="5" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <Spinner fx:id="spinnerHeure" prefWidth="80" editable="true"/>
+            <Spinner fx:id="spinnerMinute" prefWidth="80" editable="true"/>
+        </HBox>
+
+        <Label text="Statut :" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <ComboBox fx:id="comboStatut" prefWidth="150"
+                  GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+        <Label text="Prix (DH) :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3">
+            <Slider fx:id="sliderPrix" min="0" max="2000" value="200" prefWidth="300"/>
+            <Label fx:id="labelPrix" text="200 DH"/>
+        </HBox>
+
+        <Label text="Notes :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextArea fx:id="champNotes" prefRowCount="2" promptText="Remarques sur le rendez-vous"
+                  GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+    </GridPane>
+
+    <!-- ===== BOUTONS D'ACTION ===== -->
+    <HBox spacing="10">
+        <Button text="Ajouter" onAction="#ajouterRendezVous"/>
+        <Button text="Modifier" onAction="#modifierRendezVous"/>
+        <Button text="Supprimer" onAction="#supprimerRendezVous"/>
+        <Button text="Effacer le formulaire" onAction="#effacerFormulaire"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- ===== LISTE DES MÉDECINS DISPONIBLES ===== -->
+    <Label text="Médecins disponibles (cliquez pour sélectionner) :"/>
+    <ListView fx:id="listeMedecins" prefHeight="120" minHeight="120" onMouseClicked="#selectionnerMedecin"/>
+
+    <Separator/>
+
+    <!-- ===== TABLEAU DES RENDEZ-VOUS ===== -->
+    <TableView fx:id="tableRdv" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colPatient" text="Patient"/>
+            <TableColumn fx:id="colMedecin" text="Médecin"/>
+            <TableColumn fx:id="colDateRdv" text="Date"/>
+            <TableColumn fx:id="colHeureRdv" text="Heure"/>
+            <TableColumn fx:id="colStatut" text="Statut"/>
+            <TableColumn fx:id="colPrix" text="Prix"/>
+        </columns>
+    </TableView>
+
+</VBox>

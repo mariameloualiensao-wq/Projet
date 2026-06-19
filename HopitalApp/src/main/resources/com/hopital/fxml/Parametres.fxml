@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hopital.controller.ParametresController">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Paramètres de l'application" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <Separator/>
+
+    <Label text="Couleur principale de l'interface :"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ColorPicker fx:id="colorPicker"/>
+        <Button text="Appliquer" onAction="#appliquerCouleur"/>
+        <Button text="Réinitialiser" onAction="#reinitialiserCouleur"/>
+    </HBox>
+
+</VBox>
